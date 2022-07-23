@@ -1,0 +1,42 @@
+{
+  "name": "bad-reaction-blocker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "mk-el <me@merunno.dev>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./build/server/index.js",
+    "dev": "ts-node ./src/server/index.ts",
+    "build": "tsc -p .",
+    "format": "prettier --write \"**/*.{js,ts,md}\"",
+    "check": "prettier --check \"**/*.{js,ts,md}\"",
+    "eslint": "eslint --ignore-path .gitignore \"**/*.{js,ts,md}\"",
+    "eslint:fix": "eslint --ignore-path .gitignore \"**/*.{js,ts,md}\" --fix",
+    "fix": "yarn run format && yarn run eslint:fix",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,md}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "discord.js": "^14.0.3",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-markdown": "^2.2.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  }
+}

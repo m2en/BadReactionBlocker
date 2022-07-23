@@ -1,0 +1,6 @@
+🔮workflow (gh-actions):
+  - .github/workflows/*.yml
+  - .github/*.yml
+
+🕵️Update Blacklist:
+  - src/server/service/reaction/config.json
