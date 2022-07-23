@@ -22,5 +22,12 @@ export const {
   DISCORD_TOKEN: token,
   PREFIX: prefix,
   LOG_CHANNEL_ID: channelId,
-  GUILD_ID: guildId
-} = envManager(['DISCORD_TOKEN', 'PREFIX', 'LOG_CHANNEL_ID', 'GUILD_ID']);
+  GUILD_ID: guildId,
+  MEMBER_TIMEOUT: timeout
+} = envManager([
+  'DISCORD_TOKEN',
+  'PREFIX',
+  'LOG_CHANNEL_ID',
+  'GUILD_ID',
+  'MEMBER_TIMEOUT'
+]);

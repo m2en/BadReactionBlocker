@@ -7,6 +7,8 @@ import {
   User
 } from 'discord.js';
 import { sendLog } from '../util/sendLog';
+import { timeout } from '../util/envManager';
+import { timeoutEmbed } from '../util/embed';
 
 function getReaction(
   reaction: MessageReaction | PartialMessageReaction,
@@ -33,6 +35,16 @@ async function removeReaction(
   emojiName: string,
   client: Client
 ) {
+  const guild = reaction.message.guild;
+  if (!guild) {
+    return;
+  }
+  const guildMember = await guild.members.fetch(user.id);
+
+  if (guildMember.permissions.has(['ManageMessages'])) {
+    return;
+  }
+
   const badEmojiName = config.bad_emoji_name;
   if (!badEmojiName) {
     throw new Error(
@@ -45,6 +57,14 @@ async function removeReaction(
       await reaction.remove().catch(console.log);
       await sendLog(user, reaction, client, emojiName);
     }
+  }
+
+  if (timeout === 'true') {
+    await guildMember.timeout(
+      3 * 60 * 1000,
+      'BadReactionBlockerにより、3分間自動タイムアウトされました。'
+    );
+    await guildMember.send({ embeds: [timeoutEmbed(guild.name)] });
   }
 }
 

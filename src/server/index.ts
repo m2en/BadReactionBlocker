@@ -1,6 +1,6 @@
 import * as config from './service/reaction/config.json';
 import { Client, GatewayIntentBits, Partials } from 'discord.js';
-import { prefix, token } from './util/envManager';
+import { timeout, token } from './util/envManager';
 import { reactionBlock } from './service/reactionBlock';
 
 const client = new Client({
@@ -18,7 +18,7 @@ client.on('ready', () => {
   const blacklist = config.bad_emoji_name;
   console.log('==========================');
   console.log('BadReactionBlockerを起動しました。');
-  console.log(`prefix: ${prefix}`);
+  console.log(`タイムアウト設定: ${timeout}`);
   console.log(`ブラックリストに追加されている絵文字数: ${blacklist.length}`);
   console.log(
     `ブラックリストに追加されている絵文字:\n(警告: Unicode絵文字は正しく表示されない場合があります) `
